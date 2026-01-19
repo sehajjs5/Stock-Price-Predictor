@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Price App</title>
+    <style>
+      body {
+        font-family: Helvetica, Arial, sans-serif;
+        background: #f4f6f8;
+        height: 100vh;
+        margin: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      .card {
+        width: 50%;
+        margin: 10%;
+        padding: 10%;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        justify-content: center;
+      }
+      input,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+      }
+      button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      button:hover {
+        background: #1e40af;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Welcome to the Stock Price App</h1>
+      <form action="/predict" method="post">
+        <label for="Open">Open Price:</label>
+        <input type="text" id="Open" name="Open" required /><br /><br />
+        <label for="High">High Price:</label>
+        <input type="text" id="High" name="High" required /><br /><br />
+        <label for="Low">Low Price:</label>
+        <input type="text" id="Low" name="Low" required /><br /><br />
+        <label for="Volume">Volume:</label>
+        <input type="text" id="Volume" name="Volume" required /><br /><br />
+        <button type="submit">Predict Stock Price</button>
+      </form>
+    </div>
+  </body>
+</html>
