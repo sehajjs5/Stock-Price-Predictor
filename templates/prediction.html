@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -36,4 +36,23 @@
     </h1>
     <a href="/">Go Back</a>
   </body>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <h2>{{ ticker }} - Next Day Prediction: ₹ {{ prediction }}</h2>
+
+  <div id="chart"></div>
+
+  <script>
+    const data = {{ graph_data | safe }};
+
+    Plotly.newPlot("chart", [{
+      x: data.dates,
+      y: data.prices,
+      mode: "lines+markers"
+    }], {
+      title: "Stock Price Prediction",
+      xaxis: { title: "Date" },
+      yaxis: { title: "Price" }
+    });
+  </script>
 </html>

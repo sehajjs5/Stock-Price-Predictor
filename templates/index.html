@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -50,17 +50,45 @@
   <body>
     <div class="card">
       <h1>Welcome to the Stock Price App</h1>
-      <form action="/predict" method="post">
-        <label for="Open">Open Price:</label>
-        <input type="text" id="Open" name="Open" required /><br /><br />
-        <label for="High">High Price:</label>
-        <input type="text" id="High" name="High" required /><br /><br />
-        <label for="Low">Low Price:</label>
-        <input type="text" id="Low" name="Low" required /><br /><br />
-        <label for="Volume">Volume:</label>
-        <input type="text" id="Volume" name="Volume" required /><br /><br />
-        <button type="submit">Predict Stock Price</button>
-      </form>
-    </div>
-  </body>
+      <form action="{{ url_for('predict') }}" method="post">
+
+  <label>Select Stock:</label>
+  <select name="ticker" required>
+    {% for symbol, name in stocks.items() %}
+      <option value="{{ symbol }}">{{ name }}</option>
+    {% endfor %}
+  </select>
+
+  <br><br>
+
+  <label>
+    <input type="radio" name="mode" value="live" checked onclick="toggleInputs()">
+    Live Market Prediction
+  </label>
+
+  <label>
+    <input type="radio" name="mode" value="custom" onclick="toggleInputs()">
+    What-If Scenario
+  </label>
+
+  <div id="customInputs" style="display:none; margin-top:15px;">
+    <label>Open Price:</label>
+    <input type="number" step="any" name="open">
+
+    <label>Volume:</label>
+    <input type="number" step="any" name="volume">
+  </div>
+
+  <br>
+  <button type="submit">Predict</button>
+</form>
+
+<script>
+function toggleInputs() {
+  const mode = document.querySelector('input[name="mode"]:checked').value;
+  document.getElementById("customInputs").style.display =
+    mode === "custom" ? "block" : "none";
+}
+</script>
+</body>
 </html>
